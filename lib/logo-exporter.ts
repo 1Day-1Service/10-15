@@ -100,7 +100,7 @@ function generateVectorSVG(config: any): string {
   let contentHeight = 0
 
   const hasIcon = !!(selectedIcon || aiGeneratedIcon)
-  const padding = 80 // 여백
+  const padding = 30 // 여백 - 로고에 집중하도록 최소화
 
   if (layout === 'horizontal') {
     // 가로 배치: 아이콘 + 간격 + 텍스트
