@@ -73,12 +73,6 @@ function generateVectorSVG(config: any): string {
     fontFamily
   } = config
 
-  // SVG 크기 설정
-  const width = 400
-  const height = 400
-  const centerX = width / 2
-  const centerY = height / 2
-
   // 폰트 패밀리 정리 (CSS Variables 제거)
   const cleanFontFamily = fontFamily?.replace(/var\(--font-([^)]+)\)/, (match: string, fontName: string) => {
     const fontMap: { [key: string]: string } = {
@@ -94,13 +88,56 @@ function generateVectorSVG(config: any): string {
     return fontMap[fontName] || 'Inter, sans-serif'
   }) || 'Inter, sans-serif'
 
+  // 텍스트 길이 추정 (대략적인 계산)
+  const primaryTextWidth = (primaryText?.length || 0) * fontSize.primary * 0.6
+  const secondaryTextWidth = (secondaryText?.length || 0) * fontSize.secondary * 0.6
+  const maxTextWidth = Math.max(primaryTextWidth, secondaryTextWidth)
+
+  // SVG 크기 동적 계산
+  let width = 800
+  let height = 400
+  let contentWidth = 0
+  let contentHeight = 0
+
+  const hasIcon = !!(selectedIcon || aiGeneratedIcon)
+  const padding = 80 // 여백
+
+  if (layout === 'horizontal') {
+    // 가로 배치: 아이콘 + 간격 + 텍스트
+    contentWidth = (hasIcon ? iconSize + spacing * 2 : 0) + maxTextWidth
+    contentHeight = Math.max(
+      iconSize,
+      fontSize.primary + (secondaryText ? fontSize.secondary + spacing : 0)
+    )
+  } else if (layout === 'vertical') {
+    // 세로 배치: 아이콘 위, 텍스트 아래
+    contentWidth = Math.max(iconSize, maxTextWidth)
+    contentHeight = (hasIcon ? iconSize + spacing * 2 : 0) + 
+                    fontSize.primary + 
+                    (secondaryText ? fontSize.secondary + spacing : 0)
+  } else {
+    // 텍스트만
+    contentWidth = maxTextWidth
+    contentHeight = fontSize.primary + (secondaryText ? fontSize.secondary + spacing : 0)
+  }
+
+  // 최종 SVG 크기 (패딩 포함)
+  width = Math.max(400, Math.ceil(contentWidth + padding * 2))
+  height = Math.max(300, Math.ceil(contentHeight + padding * 2))
+
+  const centerX = width / 2
+  const centerY = height / 2
+
   let svgElements = ''
   
   // 레이아웃에 따른 요소 배치
   if (layout === 'horizontal') {
-    // 가로 배치
-    const iconX = centerX - 60
-    const textX = centerX + 20
+    // 가로 배치 - 중앙 정렬
+    const totalWidth = (hasIcon ? iconSize + spacing * 2 : 0) + maxTextWidth
+    const startX = centerX - totalWidth / 2
+    
+    const iconX = hasIcon ? startX + iconSize / 2 : centerX
+    const textX = hasIcon ? startX + iconSize + spacing * 2 : centerX
     
     // 아이콘
     if (aiGeneratedIcon) {
@@ -110,14 +147,22 @@ function generateVectorSVG(config: any): string {
     }
     
     // 텍스트
-    svgElements += `<text x="${textX}" y="${centerY - 5}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="start" dominant-baseline="middle">${primaryText}</text>`
+    const textHeight = fontSize.primary + (secondaryText ? fontSize.secondary + spacing : 0)
+    const textStartY = centerY - textHeight / 2 + fontSize.primary / 2
+    
+    svgElements += `<text x="${textX}" y="${textStartY}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="start" dominant-baseline="middle" font-weight="600">${primaryText}</text>`
     if (secondaryText) {
-      svgElements += `<text x="${textX}" y="${centerY + fontSize.primary/2 + spacing}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="start" dominant-baseline="middle">${secondaryText}</text>`
+      svgElements += `<text x="${textX}" y="${textStartY + fontSize.primary/2 + spacing}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="start" dominant-baseline="middle">${secondaryText}</text>`
     }
   } else if (layout === 'vertical') {
-    // 세로 배치
-    const iconY = centerY - 40
-    const textY = centerY + 20
+    // 세로 배치 - 중앙 정렬
+    const totalHeight = (hasIcon ? iconSize + spacing * 2 : 0) + 
+                        fontSize.primary + 
+                        (secondaryText ? fontSize.secondary + spacing : 0)
+    const startY = centerY - totalHeight / 2
+    
+    const iconY = hasIcon ? startY + iconSize / 2 : centerY
+    const textStartY = hasIcon ? startY + iconSize + spacing * 2 : startY
     
     // 아이콘
     if (aiGeneratedIcon) {
@@ -127,15 +172,18 @@ function generateVectorSVG(config: any): string {
     }
     
     // 텍스트
-    svgElements += `<text x="${centerX}" y="${textY}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${primaryText}</text>`
+    svgElements += `<text x="${centerX}" y="${textStartY + fontSize.primary/2}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle" font-weight="600">${primaryText}</text>`
     if (secondaryText) {
-      svgElements += `<text x="${centerX}" y="${textY + fontSize.primary/2 + spacing}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${secondaryText}</text>`
+      svgElements += `<text x="${centerX}" y="${textStartY + fontSize.primary + spacing + fontSize.secondary/2}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${secondaryText}</text>`
     }
   } else {
-    // 텍스트만
-    svgElements += `<text x="${centerX}" y="${centerY - 10}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${primaryText}</text>`
+    // 텍스트만 - 중앙 정렬
+    const textHeight = fontSize.primary + (secondaryText ? fontSize.secondary + spacing : 0)
+    const textStartY = centerY - textHeight / 2 + fontSize.primary / 2
+    
+    svgElements += `<text x="${centerX}" y="${textStartY}" font-family="${cleanFontFamily}" font-size="${fontSize.primary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle" font-weight="600">${primaryText}</text>`
     if (secondaryText) {
-      svgElements += `<text x="${centerX}" y="${centerY + fontSize.primary/2 + spacing}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${secondaryText}</text>`
+      svgElements += `<text x="${centerX}" y="${textStartY + fontSize.primary/2 + spacing}" font-family="${cleanFontFamily}" font-size="${fontSize.secondary}" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${secondaryText}</text>`
     }
   }
 
