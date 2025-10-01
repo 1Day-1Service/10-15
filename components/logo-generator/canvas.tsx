@@ -80,6 +80,7 @@ export function Canvas({ config }: CanvasProps) {
                 color: config.textColor,
                 fontWeight: 'bold',
                 margin: 0,
+                fontFamily: config.fontFamily,
               }}
             >
               {config.primaryText}
@@ -92,6 +93,7 @@ export function Canvas({ config }: CanvasProps) {
                 fontSize: config.fontSize.secondary,
                 color: config.textColor,
                 margin: 0,
+                fontFamily: config.fontFamily,
               }}
             >
               {config.secondaryText}
@@ -133,6 +135,7 @@ export function Canvas({ config }: CanvasProps) {
                     fontSize: config.fontSize.primary * scale,
                     color: config.textColor,
                     fontWeight: 'bold',
+                    fontFamily: config.fontFamily,
                   }}
                 >
                   {config.primaryText}

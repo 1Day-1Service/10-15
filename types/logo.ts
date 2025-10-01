@@ -23,6 +23,7 @@ export interface LogoConfig {
   }
   iconSize: number
   spacing: number
+  fontFamily: string
 }
 
 export interface AIGenerationRequest {

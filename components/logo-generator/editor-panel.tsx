@@ -7,6 +7,7 @@ import { AIIconGenerator } from "./ai-icon-generator"
 import { ColorPicker } from "./color-picker"
 import { LayoutSelector } from "./layout-selector"
 import { SizeControls } from "./size-controls"
+import { FontSelector } from "./font-selector"
 import { DownloadButton } from "./download-button"
 import { Button } from "@/components/ui/button"
 import { LogoConfig } from "@/types/logo"
@@ -63,6 +64,11 @@ export function EditorPanel({ config, onChange, onReset }: EditorPanelProps) {
         {/* Size Controls */}
         <div className="pt-4 border-t">
           <SizeControls config={config} onChange={onChange} />
+        </div>
+        
+        {/* Font Selector */}
+        <div className="pt-4 border-t">
+          <FontSelector config={config} onChange={onChange} />
         </div>
       </div>
 
