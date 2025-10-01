@@ -14,7 +14,7 @@ export function ColorPicker({ config, onChange }: ColorPickerProps) {
   return (
     <div className="space-y-6">
       {/* Background Color */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Label>배경색</Label>
         <div className="grid grid-cols-5 gap-2">
           {COLOR_PRESETS.map((color) => (
@@ -32,23 +32,33 @@ export function ColorPicker({ config, onChange }: ColorPickerProps) {
             />
           ))}
         </div>
-        <input
-          type="color"
-          value={config.backgroundColor}
-          onChange={(e) => onChange({ backgroundColor: e.target.value })}
-          className="w-full h-10 rounded-md cursor-pointer"
-        />
+        
+        {/* 커스텀 색상 선택기 */}
+        <div className="flex items-center gap-3 p-3 border rounded-md bg-gray-50">
+          <Label className="text-sm font-medium">커스텀:</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={config.backgroundColor}
+              onChange={(e) => onChange({ backgroundColor: e.target.value })}
+              className="w-8 h-8 rounded border cursor-pointer"
+            />
+            <span className="text-xs text-muted-foreground font-mono">
+              {config.backgroundColor}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Text Color */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Label>텍스트 색상</Label>
         <div className="grid grid-cols-5 gap-2">
           {COLOR_PRESETS.map((color) => (
             <button
               key={color.value}
               className={cn(
-                "h-10 w-10 rounded-md border-2 transition-all hover:scale-110",
+                "h-10 w-10 rounded-md border-2 transition-all hover:scale-110 flex items-center justify-center",
                 config.textColor === color.value
                   ? "border-primary ring-2 ring-primary ring-offset-2"
                   : "border-gray-300"
@@ -56,20 +66,45 @@ export function ColorPicker({ config, onChange }: ColorPickerProps) {
               style={{ backgroundColor: color.value }}
               onClick={() => onChange({ textColor: color.value })}
               title={color.name}
-            />
+            >
+              <span 
+                className="text-lg font-bold"
+                style={{ 
+                  color: color.value === '#FFFFFF' ? '#000000' : '#FFFFFF'
+                }}
+              >
+                A
+              </span>
+            </button>
           ))}
+        </div>
+        
+        {/* 커스텀 색상 선택기 */}
+        <div className="flex items-center gap-3 p-3 border rounded-md bg-gray-50">
+          <Label className="text-sm font-medium">커스텀:</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={config.textColor}
+              onChange={(e) => onChange({ textColor: e.target.value })}
+              className="w-8 h-8 rounded border cursor-pointer"
+            />
+            <span className="text-xs text-muted-foreground font-mono">
+              {config.textColor}
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Icon Color */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         <Label>아이콘 색상</Label>
         <div className="grid grid-cols-5 gap-2">
           {COLOR_PRESETS.map((color) => (
             <button
               key={color.value}
               className={cn(
-                "h-10 w-10 rounded-md border-2 transition-all hover:scale-110",
+                "h-10 w-10 rounded-md border-2 transition-all hover:scale-110 flex items-center justify-center",
                 config.iconColor === color.value
                   ? "border-primary ring-2 ring-primary ring-offset-2"
                   : "border-gray-300"
@@ -77,8 +112,31 @@ export function ColorPicker({ config, onChange }: ColorPickerProps) {
               style={{ backgroundColor: color.value }}
               onClick={() => onChange({ iconColor: color.value })}
               title={color.name}
-            />
+            >
+              <div 
+                className="w-5 h-5 rounded-full"
+                style={{ 
+                  backgroundColor: color.value === '#FFFFFF' ? '#000000' : '#FFFFFF'
+                }}
+              />
+            </button>
           ))}
+        </div>
+        
+        {/* 커스텀 색상 선택기 */}
+        <div className="flex items-center gap-3 p-3 border rounded-md bg-gray-50">
+          <Label className="text-sm font-medium">커스텀:</Label>
+          <div className="flex items-center gap-2">
+            <input
+              type="color"
+              value={config.iconColor}
+              onChange={(e) => onChange({ iconColor: e.target.value })}
+              className="w-8 h-8 rounded border cursor-pointer"
+            />
+            <span className="text-xs text-muted-foreground font-mono">
+              {config.iconColor}
+            </span>
+          </div>
         </div>
       </div>
     </div>
