@@ -65,7 +65,7 @@ export const DEFAULT_LOGO_CONFIG = {
   },
   iconSize: 64,
   spacing: 16,
-  fontFamily: 'Inter, system-ui, sans-serif',
+  fontFamily: 'var(--font-inter)',
 }
 
 // 크기 프리셋
@@ -80,42 +80,42 @@ export const SIZE_PRESETS = [
 export const FONT_OPTIONS = [
   { 
     name: 'Inter', 
-    value: 'Inter, system-ui, sans-serif', 
+    value: 'var(--font-inter)', 
     category: '모던' 
   },
   { 
     name: 'Roboto', 
-    value: 'Roboto, sans-serif', 
+    value: 'var(--font-roboto)', 
     category: '클린' 
   },
   { 
     name: 'Poppins', 
-    value: 'Poppins, sans-serif', 
+    value: 'var(--font-poppins)', 
     category: '라운드' 
   },
   { 
     name: 'Montserrat', 
-    value: 'Montserrat, sans-serif', 
+    value: 'var(--font-montserrat)', 
     category: '우아함' 
   },
   { 
     name: 'Open Sans', 
-    value: 'Open Sans, sans-serif', 
+    value: 'var(--font-opensans)', 
     category: '친근함' 
   },
   { 
     name: 'Playfair Display', 
-    value: 'Playfair Display, serif', 
+    value: 'var(--font-playfair)', 
     category: '세리프' 
   },
   { 
     name: 'JetBrains Mono', 
-    value: 'JetBrains Mono, monospace', 
+    value: 'var(--font-jetbrains)', 
     category: '모노스페이스' 
   },
   { 
     name: 'Noto Sans KR', 
-    value: 'Noto Sans KR, sans-serif', 
+    value: 'var(--font-noto)', 
     category: '한글' 
   },
 ] as const

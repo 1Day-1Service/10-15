@@ -24,18 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <head>
-        <style jsx global>{`
-          .font-inter { font-family: ${inter.style.fontFamily}; }
-          .font-roboto { font-family: ${roboto.style.fontFamily}; }
-          .font-poppins { font-family: ${poppins.style.fontFamily}; }
-          .font-montserrat { font-family: ${montserrat.style.fontFamily}; }
-          .font-opensans { font-family: ${openSans.style.fontFamily}; }
-          .font-playfair { font-family: ${playfair.style.fontFamily}; }
-          .font-jetbrains { font-family: ${jetbrains.style.fontFamily}; }
-          .font-noto { font-family: ${notoSansKR.style.fontFamily}; }
-        `}</style>
-      </head>
       <body className={inter.className}>
         {children}
         <Analytics />
