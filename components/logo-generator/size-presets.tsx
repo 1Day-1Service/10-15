@@ -11,7 +11,7 @@ interface SizePresetsProps {
 }
 
 export function SizePresets({ config, onChange }: SizePresetsProps) {
-  const applyPreset = (preset: typeof SIZE_PRESETS[0]) => {
+  const applyPreset = (preset: (typeof SIZE_PRESETS)[number]) => {
     onChange({
       fontSize: {
         primary: preset.primary,
