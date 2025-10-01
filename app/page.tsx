@@ -37,7 +37,7 @@ export default function HomePage() {
             </div>
             
             <div className="text-sm text-muted-foreground">
-              Powered by Replicate FLUX
+              Powered by Hugging Face FLUX - 완전 무료!
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function HomePage() {
             1Day 1Service - Day 1: AI Logo Generator
           </p>
           <p className="mt-2">
-            Made with ❤️ using Next.js, TypeScript, Tailwind CSS, and Replicate AI
+            Made with ❤️ using Next.js, TypeScript, Tailwind CSS, and Hugging Face AI
           </p>
         </div>
       </footer>

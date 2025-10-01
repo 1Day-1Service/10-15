@@ -5,8 +5,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Logo Generator - Create Custom Logos with AI",
-  description: "Generate beautiful custom logos with AI. Powered by Replicate FLUX.",
+  title: "AI Logo Generator - Create Custom Logos with AI (Free!)",
+  description: "Generate beautiful custom logos with AI. Powered by Hugging Face FLUX. 100% Free!",
 }
 
 export default function RootLayout({

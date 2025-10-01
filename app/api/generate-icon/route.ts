@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateIconWithReplicate } from '@/lib/ai/replicate-client'
+import { generateIconWithHuggingFace } from '@/lib/ai/huggingface-client'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { prompt, style = 'minimalist', provider = 'replicate' } = body
+    const { prompt, style = 'minimalist' } = body
 
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json(
@@ -13,19 +13,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Rate limiting check (simple implementation)
-    // In production, use a proper rate limiting solution
-
-    let imageBase64: string
-
-    if (provider === 'replicate') {
-      imageBase64 = await generateIconWithReplicate(prompt, style)
-    } else {
-      return NextResponse.json(
-        { success: false, error: 'Unsupported provider' },
-        { status: 400 }
-      )
-    }
+    const imageBase64 = await generateIconWithHuggingFace(prompt, style)
 
     return NextResponse.json({
       success: true,

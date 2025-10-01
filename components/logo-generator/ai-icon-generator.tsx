@@ -51,7 +51,6 @@ export function AIIconGenerator({ config, onChange }: AIIconGeneratorProps) {
         body: JSON.stringify({
           prompt,
           style: 'minimalist',
-          provider: 'replicate',
         }),
       })
 

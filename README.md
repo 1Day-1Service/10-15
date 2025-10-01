@@ -1,6 +1,6 @@
 # 🤖 AI Logo Generator
 
-AI로 커스텀 로고를 생성하는 웹 애플리케이션입니다. Replicate FLUX를 활용하여 텍스트 프롬프트로 독창적인 아이콘을 만들 수 있습니다.
+AI로 커스텀 로고를 생성하는 웹 애플리케이션입니다. Hugging Face FLUX를 활용하여 텍스트 프롬프트로 독창적인 아이콘을 만들 수 있습니다. **완전 무료!**
 
 ## ✨ 주요 기능
 
@@ -17,7 +17,7 @@ AI로 커스텀 로고를 생성하는 웹 애플리케이션입니다. Replicat
 
 - **Frontend**: Next.js 14 (App Router), TypeScript
 - **Styling**: Tailwind CSS, Shadcn UI
-- **AI**: Replicate (FLUX Schnell)
+- **AI**: Hugging Face (FLUX Schnell) - 완전 무료!
 - **Icons**: Lucide React
 - **Export**: html-to-image
 
@@ -38,13 +38,15 @@ yarn install
 `.env.local` 파일을 생성하고 API 키를 입력하세요:
 
 ```env
-REPLICATE_API_TOKEN=your_replicate_api_token_here
+HUGGINGFACE_API_TOKEN=your_huggingface_token_here
 ```
 
-**API 키 발급:**
-1. [Replicate](https://replicate.com)에 가입 (GitHub 로그인)
-2. [API Tokens](https://replicate.com/account/api-tokens) 페이지에서 토큰 생성
-3. 무료 크레딧 제공 (매월 리필)
+**API 키 발급 (완전 무료!):**
+1. [Hugging Face](https://huggingface.co)에 가입 (GitHub 로그인 가능)
+2. [Access Tokens](https://huggingface.co/settings/tokens) 페이지 이동
+3. **"New token"** 클릭 → Read 권한 선택
+4. 토큰 복사 (hf_로 시작)
+5. **완전 무료! 크레딧 걱정 없음**
 
 ### 3. 개발 서버 실행
 
@@ -84,19 +86,20 @@ npm run dev
 
 ## 📝 API 사용량 및 비용
 
-- **Replicate 무료 크레딧**:
-  - 가입 시 무료 크레딧 제공
-  - FLUX Schnell: ~$0.003/이미지 (매우 저렴)
-  - 생성 시간: 5-10초
+- **Hugging Face Inference API**:
+  - ✅ **완전 무료!**
+  - ✅ 무제한 사용 (Rate limit 있음)
+  - ✅ 크레딧 결제 불필요
+  - 생성 시간: 10-20초 (첫 로딩 시 더 걸릴 수 있음)
 
 ## 🐛 문제 해결
 
 ### AI 생성이 실패할 때
 
-1. `.env.local`에 `REPLICATE_API_TOKEN`이 올바르게 설정되어 있는지 확인
-2. Replicate 계정의 크레딧이 남아있는지 확인
-3. 인터넷 연결 확인
-4. 브라우저 콘솔에서 에러 메시지 확인
+1. `.env.local`에 `HUGGINGFACE_API_TOKEN`이 올바르게 설정되어 있는지 확인
+2. 토큰이 `hf_`로 시작하는지 확인
+3. 처음 생성 시 모델 로딩에 20-30초 소요될 수 있음 (기다려주세요)
+4. 503 에러 시: 모델 로딩 중이므로 1-2분 후 다시 시도
 5. 서버를 재시작해보세요 (환경 변수 변경 시)
 
 ### 이미지 다운로드가 안 될 때
@@ -106,7 +109,7 @@ npm run dev
 
 ## 🔮 향후 계획
 
-- [x] 실제 AI 이미지 생성 (Replicate FLUX)
+- [x] 실제 AI 이미지 생성 (Hugging Face FLUX - 완전 무료!)
 - [ ] 배경 제거 기능
 - [ ] 폰트 선택 옵션
 - [ ] 로고 히스토리 저장
@@ -120,7 +123,7 @@ MIT License
 
 ## 🙏 감사의 말
 
-- [Replicate](https://replicate.com/) - AI 이미지 생성
+- [Hugging Face](https://huggingface.co/) - 무료 AI 이미지 생성
 - [FLUX](https://blackforestlabs.ai/) - 고품질 AI 모델
 - [Shadcn UI](https://ui.shadcn.com/) - 아름다운 컴포넌트
 - [Lucide](https://lucide.dev/) - 아이콘
