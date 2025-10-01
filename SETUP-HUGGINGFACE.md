@@ -37,7 +37,8 @@
 
 5. 토큰 설정:
    - **Name**: `logo-generator` (원하는 이름)
-   - **Role**: **Read** 선택 (Write는 불필요)
+   - **Token type**: **Read** (Classic) - 추천!
+   - ⚠️ Fine-grained는 권한 설정이 복잡하므로 Classic 사용
    
 6. **Generate token** 클릭
 
@@ -147,6 +148,12 @@ A: Rate limit 내에서 무제한 사용 가능합니다.
 
 **Q: 토큰을 잃어버렸어요!**
 A: 새로 만들면 됩니다. 기존 토큰 삭제 후 재생성하세요.
+
+**Q: Fine-grained vs Classic 토큰?**
+A: **Classic Read 토큰 추천!** Fine-grained는 권한 설정이 복잡합니다.
+
+**Q: 403 권한 에러가 나요**
+A: Classic Read 토큰으로 다시 생성해보세요.
 
 **Q: 생성 속도가 느려요**
 A: 

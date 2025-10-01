@@ -44,9 +44,11 @@ HUGGINGFACE_API_TOKEN=your_huggingface_token_here
 **API 키 발급 (완전 무료!):**
 1. [Hugging Face](https://huggingface.co)에 가입 (GitHub 로그인 가능)
 2. [Access Tokens](https://huggingface.co/settings/tokens) 페이지 이동
-3. **"New token"** 클릭 → Read 권한 선택
+3. **"New token"** 클릭 → **Read (Classic)** 선택 ⚠️
 4. 토큰 복사 (hf_로 시작)
 5. **완전 무료! 크레딧 걱정 없음**
+
+> 💡 **중요**: Fine-grained 토큰은 권한 설정이 복잡하므로 **Classic Read** 토큰을 사용하세요!
 
 ### 3. 개발 서버 실행
 
@@ -98,9 +100,10 @@ npm run dev
 
 1. `.env.local`에 `HUGGINGFACE_API_TOKEN`이 올바르게 설정되어 있는지 확인
 2. 토큰이 `hf_`로 시작하는지 확인
-3. 처음 생성 시 모델 로딩에 20-30초 소요될 수 있음 (기다려주세요)
-4. 503 에러 시: 모델 로딩 중이므로 1-2분 후 다시 시도
-5. 서버를 재시작해보세요 (환경 변수 변경 시)
+3. **403 권한 에러**: Classic Read 토큰으로 재생성 (Fine-grained 대신)
+4. 처음 생성 시 모델 로딩에 20-30초 소요될 수 있음 (기다려주세요)
+5. 503 에러 시: 모델 로딩 중이므로 1-2분 후 다시 시도
+6. 서버를 재시작해보세요 (환경 변수 변경 시)
 
 ### 이미지 다운로드가 안 될 때
 
