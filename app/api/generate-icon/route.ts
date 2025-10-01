@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateIconWithGemini } from '@/lib/ai/gemini-client'
+import { generateIconWithReplicate } from '@/lib/ai/replicate-client'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { prompt, style = 'minimalist', provider = 'gemini' } = body
+    const { prompt, style = 'minimalist', provider = 'replicate' } = body
 
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json(
@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
 
     let imageBase64: string
 
-    if (provider === 'gemini') {
-      imageBase64 = await generateIconWithGemini(prompt, style)
+    if (provider === 'replicate') {
+      imageBase64 = await generateIconWithReplicate(prompt, style)
     } else {
       return NextResponse.json(
         { success: false, error: 'Unsupported provider' },

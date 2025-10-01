@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "AI Logo Generator - Create Custom Logos with AI",
-  description: "Generate beautiful custom logos with AI. Powered by Gemini 2.5 Flash.",
+  description: "Generate beautiful custom logos with AI. Powered by Replicate FLUX.",
 }
 
 export default function RootLayout({

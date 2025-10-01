@@ -17,7 +17,7 @@ AI로 커스텀 로고를 생성하는 웹 애플리케이션입니다. Gemini 2
 
 - **Frontend**: Next.js 14 (App Router), TypeScript
 - **Styling**: Tailwind CSS, Shadcn UI
-- **AI**: Google Gemini 2.5 Flash
+- **AI**: Replicate (FLUX Schnell)
 - **Icons**: Lucide React
 - **Export**: html-to-image
 
@@ -38,12 +38,13 @@ yarn install
 `.env.local` 파일을 생성하고 API 키를 입력하세요:
 
 ```env
-GOOGLE_AI_API_KEY=your_gemini_api_key_here
-AI_PROVIDER=gemini
+REPLICATE_API_TOKEN=your_replicate_api_token_here
 ```
 
 **API 키 발급:**
-- [Google AI Studio](https://makersuite.google.com/app/apikey)에서 무료로 발급 가능
+1. [Replicate](https://replicate.com)에 가입 (GitHub 로그인)
+2. [API Tokens](https://replicate.com/account/api-tokens) 페이지에서 토큰 생성
+3. 무료 크레딧 제공 (매월 리필)
 
 ### 3. 개발 서버 실행
 
@@ -81,21 +82,22 @@ npm run dev
 - `.env.local` 파일은 절대 Git에 커밋하지 마세요
 - API 키는 서버 사이드에서만 사용됩니다 (클라이언트 노출 안됨)
 
-## 📝 API 사용량
+## 📝 API 사용량 및 비용
 
-- **Gemini 2.5 Flash 무료 티어**:
-  - 15 RPM (분당 요청)
-  - 1,500 RPD (일일 요청)
-  - 1M TPM (분당 토큰)
+- **Replicate 무료 크레딧**:
+  - 가입 시 무료 크레딧 제공
+  - FLUX Schnell: ~$0.003/이미지 (매우 저렴)
+  - 생성 시간: 5-10초
 
 ## 🐛 문제 해결
 
 ### AI 생성이 실패할 때
 
-1. `.env.local`에 API 키가 올바르게 설정되어 있는지 확인
-2. Google AI Studio에서 API 키가 활성화되어 있는지 확인
+1. `.env.local`에 `REPLICATE_API_TOKEN`이 올바르게 설정되어 있는지 확인
+2. Replicate 계정의 크레딧이 남아있는지 확인
 3. 인터넷 연결 확인
 4. 브라우저 콘솔에서 에러 메시지 확인
+5. 서버를 재시작해보세요 (환경 변수 변경 시)
 
 ### 이미지 다운로드가 안 될 때
 
@@ -104,12 +106,13 @@ npm run dev
 
 ## 🔮 향후 계획
 
-- [ ] Imagen 3 API 통합 (실제 이미지 생성)
+- [x] 실제 AI 이미지 생성 (Replicate FLUX)
 - [ ] 배경 제거 기능
 - [ ] 폰트 선택 옵션
 - [ ] 로고 히스토리 저장
-- [ ] 배치 생성 (한 번에 4개)
+- [ ] 배치 생성 (한 번에 4개 변형)
 - [ ] SVG 다운로드 지원
+- [ ] 스타일 프리셋 (미니멀, 3D, 일러스트 등)
 
 ## 📄 라이선스
 
@@ -117,7 +120,8 @@ MIT License
 
 ## 🙏 감사의 말
 
-- [Google Gemini](https://ai.google.dev/) - AI 파워
+- [Replicate](https://replicate.com/) - AI 이미지 생성
+- [FLUX](https://blackforestlabs.ai/) - 고품질 AI 모델
 - [Shadcn UI](https://ui.shadcn.com/) - 아름다운 컴포넌트
 - [Lucide](https://lucide.dev/) - 아이콘
 - [Next.js](https://nextjs.org/) - 프레임워크

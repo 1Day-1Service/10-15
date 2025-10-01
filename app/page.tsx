@@ -37,7 +37,7 @@ export default function HomePage() {
             </div>
             
             <div className="text-sm text-muted-foreground">
-              Powered by Gemini 2.5 Flash
+              Powered by Replicate FLUX
             </div>
           </div>
         </div>
