@@ -29,7 +29,7 @@ export function DownloadButton({ config }: DownloadButtonProps) {
     setIsExporting(true)
     try {
       const filename = config.primaryText.replace(/\s+/g, '-').toLowerCase() || 'logo'
-      await exportLogoAsSVG('logo-canvas', filename)
+      await exportLogoAsSVG('logo-canvas', filename, config)
     } catch (error) {
       alert('SVG 다운로드 실패: ' + (error instanceof Error ? error.message : '알 수 없는 오류'))
     } finally {
