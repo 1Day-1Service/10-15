@@ -69,7 +69,7 @@ export default function HomePage() {
             1Day 1Service - Day 1: AI Logo Generator
           </p>
           <p className="mt-2">
-            Made with ❤️ using Next.js, TypeScript, Tailwind CSS, and Gemini AI
+            Made with ❤️ using Next.js, TypeScript, Tailwind CSS, and Replicate AI
           </p>
         </div>
       </footer>

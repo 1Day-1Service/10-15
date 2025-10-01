@@ -28,7 +28,7 @@ export interface LogoConfig {
 export interface AIGenerationRequest {
   prompt: string
   style?: 'minimalist' | 'detailed' | 'abstract'
-  provider: 'gemini' | 'grok'
+  provider: 'replicate'
 }
 
 export interface AIGenerationResponse {
