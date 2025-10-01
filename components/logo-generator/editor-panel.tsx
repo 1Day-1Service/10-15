@@ -6,6 +6,7 @@ import { IconSelector } from "./icon-selector"
 import { AIIconGenerator } from "./ai-icon-generator"
 import { ColorPicker } from "./color-picker"
 import { LayoutSelector } from "./layout-selector"
+import { SizeControls } from "./size-controls"
 import { DownloadButton } from "./download-button"
 import { Button } from "@/components/ui/button"
 import { LogoConfig } from "@/types/logo"
@@ -57,6 +58,11 @@ export function EditorPanel({ config, onChange, onReset }: EditorPanelProps) {
         {/* Layout Selector */}
         <div className="pt-4 border-t">
           <LayoutSelector config={config} onChange={onChange} />
+        </div>
+        
+        {/* Size Controls */}
+        <div className="pt-4 border-t">
+          <SizeControls config={config} onChange={onChange} />
         </div>
       </div>
 

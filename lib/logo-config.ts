@@ -67,4 +67,12 @@ export const DEFAULT_LOGO_CONFIG = {
   spacing: 16,
 }
 
+// 크기 프리셋
+export const SIZE_PRESETS = [
+  { name: '작게', primary: 32, secondary: 16, icon: 48, spacing: 12 },
+  { name: '보통', primary: 48, secondary: 24, icon: 64, spacing: 16 },
+  { name: '크게', primary: 64, secondary: 32, icon: 80, spacing: 20 },
+  { name: '매우 크게', primary: 80, secondary: 40, icon: 96, spacing: 24 },
+] as const
+
 
