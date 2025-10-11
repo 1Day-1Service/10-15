@@ -15,6 +15,9 @@ const notoSansKR = Noto_Sans_KR({ weight: ['400', '700'], subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "AI Logo Generator - Create Custom Logos with AI (Free!)",
   description: "Generate beautiful custom logos with AI. Powered by Hugging Face FLUX. 100% Free!",
+  verification: {
+    google: "4fH6k9IRd0AGqHAYAvpCe_EN_NwmRCpFso5olHqs_MA",
+  },
 }
 
 export default function RootLayout({
